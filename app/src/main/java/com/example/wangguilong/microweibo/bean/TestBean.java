@@ -16,13 +16,13 @@ public class TestBean {
 	 * total_number : 81655
 	 */
 
-	private int previous_cursor;
+	private long previous_cursor;
 	private long next_cursor;
 	private int total_number;
 	private List<StatusesBean> statuses;
 	private List<AdBean> ad;
 
-	public int getPrevious_cursor() {
+	public long getPrevious_cursor() {
 		return previous_cursor;
 	}
 
@@ -248,7 +248,7 @@ public class TestBean {
 			 * bi_followers_count : 215
 			 */
 
-			private int id;
+			private long id;
 			private String screen_name;
 			private String name;
 			private String province;
@@ -276,7 +276,7 @@ public class TestBean {
 			private int online_status;
 			private int bi_followers_count;
 
-			public int getId() {
+			public long getId() {
 				return id;
 			}
 

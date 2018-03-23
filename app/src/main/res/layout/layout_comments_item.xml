@@ -2,17 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" 
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    android:paddingTop="10dp"
-    android:paddingHorizontal="10dp"
-    android:layout_marginBottom="4dp"
-
-    android:layout_marginTop="4dp">
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="35dp"
         android:gravity="center_vertical">
         <com.example.wangguilong.microweibo.view.circularimage.CircularImageView
             android:id="@+id/profile_image"
@@ -34,26 +29,24 @@
                 android:layout_height="wrap_content"
                 android:text="测试用户1"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2小时前"
-                />
+
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:src="@drawable/timeline_icon_more"
-            android:layout_marginTop="10dp"/>
+            android:layout_centerVertical="true"
+            android:text="3-23 10:34"
+            />
     </RelativeLayout>
     <TextView
         android:id="@+id/text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:text="11111111111111"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"/>
 
 </LinearLayout>

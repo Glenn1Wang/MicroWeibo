@@ -15,16 +15,19 @@ import java.util.List;
  * Created by WangGuiLong on 2018/3/21.
  */
 
-public class HomeAdapter extends BaseAdapter<TestBean> {
-	public HomeAdapter(Context mContext, RecyclerView recyclerView, List<TestBean> mData, int mLayoutId) {
+public class HomeAdapter extends BaseAdapter<TestBean.StatusesBean> {
+	public HomeAdapter(Context mContext, RecyclerView recyclerView, List<TestBean.StatusesBean> mData, int mLayoutId) {
 		super(mContext, recyclerView, mData, mLayoutId);
 	}
-
-	@Override
-	protected void convert(Context mContext, RecyclerView.ViewHolder viewHolder, TestBean bean) {
-		if (viewHolder instanceof BaseViewHolder){
-//			((BaseViewHolder) viewHolder).getView()
-		}
+//	public HomeAdapter(Context mContext, RecyclerView recyclerView, List<TestBean> mData, int mLayoutId) {
+//		super(mContext, recyclerView, mData, mLayoutId);
+//	}
+//
+//	@Override
+//	protected void convert(Context mContext, RecyclerView.ViewHolder viewHolder, TestBean bean) {
+//		if (viewHolder instanceof BaseViewHolder){
+//			((BaseViewHolder) viewHolder).setText(R.id.user_name,bean.getStatuses().get(1).getUser().get);
+//		}
 //		viewHolder.text1.setText(WeiBoContentTextUtil.getWeiBoContent(list.get(position).getText(),context,itemHolder.text1));
 //
 //		viewHolder.userName.setText(list.get(position).getUserName());
@@ -54,5 +57,14 @@ public class HomeAdapter extends BaseAdapter<TestBean> {
 //				likeButton.setLiked(false);
 //			}
 //		});
+//	}
+
+	@Override
+	protected void convert(Context mContext, RecyclerView.ViewHolder viewHolder, TestBean.StatusesBean statusesBean) {
+		if (viewHolder instanceof BaseViewHolder){
+			((BaseViewHolder) viewHolder).setText(R.id.user_name, statusesBean.getUser().getName());
+			((BaseViewHolder) viewHolder).setImage(mContext,statusesBean.getUser().getProfile_image_url(),R.id.profile_image);
+			((BaseViewHolder) viewHolder).setText(R.id.text, statusesBean.getText());
+		}
 	}
 }

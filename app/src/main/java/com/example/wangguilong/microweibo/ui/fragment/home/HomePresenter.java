@@ -22,22 +22,11 @@ public class HomePresenter implements HomeContract.IHomePresenter {
 	}
 
 	@Override
-	public void getData() {
-//		iHomeModel.getData(iHomeView.getcontext(), new OnHttpCallBack<List<HomeBean>>() {
-//			@Override
-//			public void onSuccess(List<HomeBean> list) {
-//				iHomeView.getDataSuccess(list);
-//			}
-//
-//			@Override
-//			public void onFail(String msg) {
-//
-//			}
-//		});
-		iHomeModel.getData(iHomeView.getcontext(), new OnHttpCallBack<TestBean>() {
+	public void getData(int page) {
+		iHomeModel.getData(iHomeView.getcontext(),page, new OnHttpCallBack<List<TestBean.StatusesBean>>() {
 			@Override
-			public void onSuccess(TestBean testBean) {
-				iHomeView.getDataSuccess(testBean);
+			public void onSuccess(List<TestBean.StatusesBean> statusesBeans) {
+				iHomeView.getDataSuccess(statusesBeans);
 			}
 
 			@Override

@@ -48,18 +48,16 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter{
 			public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 				super.onScrolled(recyclerView, dx, dy);
 				LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
-				//全部的item个数
-				int totalItemCount = manager.getItemCount();
-				//最后可见的item的位置
-				int lastVisibleItemPosition = manager.findLastVisibleItemPosition();
-				if (!isLoading && dy>0 && lastVisibleItemPosition >=  totalItemCount - 1) {
-					//
+				int    totalItemCount = manager.getItemCount();
+				int    lastVisibleItemPosition = manager.findLastVisibleItemPosition();
+				if (!isLoading &&dy>0&&lastVisibleItemPosition>=totalItemCount-5) {
+					//此时是刷新状态
 					if (mLoadMoreListener != null) {
 						mLoadMoreListener.onLoadMore();
 					}
 					isLoading = true;
 				}
-
+				isLoading = false;
 			}
 		});
 	}

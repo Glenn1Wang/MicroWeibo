@@ -17,14 +17,14 @@ public class HomeContract {
 	interface IHomeView {
 		Context getcontext();
 		void showMsg(String msg);
-		void getDataSuccess(TestBean bean);
+		void getDataSuccess(List<TestBean.StatusesBean> bean);
 	}
 
 	interface IHomePresenter {
-		void getData();
+		void getData(int page);
 	}
 
 	interface IHomeModel {
-		void getData(Context context, OnHttpCallBack<TestBean> callBack);
+		void getData(Context context, int page,OnHttpCallBack<List<TestBean.StatusesBean>> callBack);
 	}
 }
