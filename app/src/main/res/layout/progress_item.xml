@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:padding="15dp"
+    android:layout_height="wrap_content">
+    <!--<ProgressBar-->
+        <!--style="@android:style/Widget.ProgressBar.Small"-->
+        <!--android:id="@+id/pb"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+    <ImageView
+        android:id="@+id/loading_more_image"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/spinner"/>
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:text="正在加载..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
