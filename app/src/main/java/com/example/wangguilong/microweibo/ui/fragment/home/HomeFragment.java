@@ -2,6 +2,7 @@ package com.example.wangguilong.microweibo.ui.fragment.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -156,18 +157,14 @@ public class HomeFragment extends BaseFragment implements HomeContract.IHomeView
 	@Override
 	public void onLoadMore() {
 		page++;
+		adapter.setLoading(true);
 		Log.e("qwer", "onLoadMore: 当前page为"+page);
-		new Thread(new Runnable() {
+		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				try {
-					Thread.sleep(2000);
-					homePresenter.getData(page);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				homePresenter.getData(page);
 			}
-		}).start();
+		},2000);
 
 
 //		adapter.setLoading(false);

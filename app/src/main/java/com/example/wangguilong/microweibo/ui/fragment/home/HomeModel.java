@@ -31,20 +31,18 @@ public class HomeModel implements HomeContract.IHomeModel {
 				.execute(new StringCallback() {
 					@Override
 					public void onSuccess(Response<String> response) {
-						Gson errGson = new Gson();
-						ErrorBean errorBean = errGson.fromJson(response.body(), ErrorBean.class);
-						if (errGson ==null) {
+						Gson gson = new Gson();
+						ErrorBean errorBean = gson.fromJson(response.body(), ErrorBean.class);
+						if (errorBean !=null) { //出错
 							Log.e("qwer", "onSuccess: "+response.body());
-							Gson gson = new Gson();
+							callBack.onFail(errorBean.getError());
+						} else {
+//							callBack.onFail(errorBean.getError()+":"+errorBean.getError_code());
+//							Gson gson1 = new Gson();
 							TestBean testBean = gson.fromJson(response.body(), TestBean.class);
 							callBack.onSuccess(testBean.getStatuses());
-						} else {
-							callBack.onFail(errorBean.getError()+":"+errorBean.getError_code());
 						}
-
-
 					}
-
 				});
 	}
 }
