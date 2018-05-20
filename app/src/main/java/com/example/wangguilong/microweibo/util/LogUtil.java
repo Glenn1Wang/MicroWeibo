@@ -121,4 +121,32 @@ public class LogUtil {
 		}
 	}
 
+	public static void ee(String response) {
+		if (response.length() > 3900) {
+			for (int i = 0; i < response.length(); i += 3900) {
+				if (i + 3900 < response.length()) {
+					Log.e("第" + i + "数据", response.substring(i, i + 3900));
+				} else {
+					Log.e("第" + i + "数据", response.substring(i, response.length()));
+				}
+			}
+		} else {
+			Log.e("全部数据", "************************  response = " + response);
+		}
+	}
+
+	public static void ee(String tag,String response) {
+		if (response.length() > 3900) {
+			for (int i = 0; i < response.length(); i += 3900) {
+				if (i + 3900 < response.length()) {
+					Log.e(tag+"===========第" + i + "数据", response.substring(i, i + 3900));
+				} else {
+					Log.e(tag+"===========第" + i + "数据", response.substring(i, response.length()));
+				}
+			}
+		} else {
+			Log.e(tag+"===========全部数据", "************************  response = " + response);
+		}
+	}
+
 }

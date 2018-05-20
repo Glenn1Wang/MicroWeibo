@@ -37,6 +37,7 @@
                 android:text="测试用户1"
                 />
             <TextView
+                android:id="@+id/time_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2小时前"
@@ -58,21 +59,60 @@
         android:text="11111111111111"
         android:layout_marginTop="10dp"/>
 
+    <com.example.wangguilong.microweibo.view.gridview.MyGridView
+        android:id="@+id/gridview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnWidth="80dp"
+        android:stretchMode="columnWidth"
+        android:numColumns="3"
+        android:padding="10dp"
+        android:verticalSpacing="2.0px"
+        android:horizontalSpacing="2.0px"
+        >
+
+    </com.example.wangguilong.microweibo.view.gridview.MyGridView>
+
     <LinearLayout
+        android:id="@+id/retweeted_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/gray2_circle_bg"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="30dp"
         android:visibility="gone"
+
         >
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
-            android:text="djsakljkdjlkjskaldjkljsakdjsajlkdjkljakljdkjsalkdjasdsadasdsadsadsadsadsadsadsadsadsa"/>
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/retweeted_name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="测试用户1:"
+                    />
+                <TextView
+                    android:id="@+id/retweeted_text_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="sssssssssssssssssssssssssssdasdasdasdadasdsdsdsdsdsadasdasdasadasdsadasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdas"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -82,7 +122,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -93,11 +133,21 @@
                 android:id="@+id/repost_image"
                 android:layout_width="17dp"
                 android:layout_height="17dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="20dp"
                 android:src="@drawable/timeline_icon_redirect"
+                android:layout_gravity="center"
+
                 />
-        </LinearLayout>
-        <LinearLayout
+            <TextView
+                android:id="@+id/report_count_text"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:text="111"
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"/>
+        </FrameLayout>
+        <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -107,32 +157,23 @@
             <ImageView
                 android:layout_width="17dp"
                 android:layout_height="17dp"
-                android:layout_marginRight="5dp"
-                android:src="@drawable/timeline_icon_comment"/>
+                android:layout_marginRight="20dp"
+                android:src="@drawable/timeline_icon_comment"
+                android:layout_gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/comment_count_text"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:text="111"
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"/>
+        </FrameLayout>
 
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-           <com.example.wangguilong.microweibo.view.likebutton.LikeButton
-               android:id="@+id/favorite"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               app:liked="false"
-               app:icon_size="17dp"
-               app:icon_type="star">
-
-           </com.example.wangguilong.microweibo.view.likebutton.LikeButton>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -147,10 +188,42 @@
                 android:layout_height="wrap_content"
                 app:liked="false"
                 app:icon_size="17dp"
-                app:icon_type="heart">
+                app:icon_type="heart"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp">
 
             </com.example.wangguilong.microweibo.view.likebutton.LikeButton>
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/like_count_text"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:text="111"
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <com.example.wangguilong.microweibo.view.likebutton.LikeButton
+                android:id="@+id/favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:liked="false"
+                app:icon_size="17dp"
+                app:icon_type="star"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp">
+
+            </com.example.wangguilong.microweibo.view.likebutton.LikeButton>
+
+
+        </FrameLayout>
     </LinearLayout>
 </LinearLayout>

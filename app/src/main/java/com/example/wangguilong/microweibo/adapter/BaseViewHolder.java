@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;
@@ -59,7 +58,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
 	}
 
 	public BaseViewHolder setImage(Context context, String uri,int resId) {
-		Glide.with(context).load(uri).into((ImageView) getView(resId));
+		Glide.with(context).load(uri).centerCrop().into((ImageView)getView(resId));
 		return this;
 	}
 

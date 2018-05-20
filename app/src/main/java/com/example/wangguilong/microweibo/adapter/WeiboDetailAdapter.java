@@ -16,6 +16,9 @@ public class WeiboDetailAdapter extends BaseAdapter{
 
 	@Override
 	protected void convert(Context mContext, RecyclerView.ViewHolder viewHolder, Object o) {
+		if (viewHolder instanceof BaseViewHolder) {
+			BaseViewHolder holder = (BaseViewHolder) viewHolder;
 
+		}
 	}
 }

@@ -1,14 +1,18 @@
 package com.example.wangguilong.microweibo.util;
 
 import android.content.Context;
-import android.os.Environment;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * 工具类
@@ -92,5 +96,66 @@ public class Util {
     public static String getAccessToken(Context context) {
         return context.getSharedPreferences("user_info",Context.MODE_PRIVATE).getString("access_token",null);
     }
+
+    public static long getUID(Context context) {
+        return context.getSharedPreferences("user_info",Context.MODE_PRIVATE).getLong("uid",0);
+
+    }
+
+    public static String getScreenName(Context context) {
+        return context.getSharedPreferences("user_info",Context.MODE_PRIVATE).getString("screen_name",null);
+
+    }
+
+    public static long toTimestamp(String time){
+        Date date = new Date(time);
+        return date.getTime();
+//        String s = String.valueOf(date.getTime());
+//        String res = null;
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy");
+//        Date date = null;
+//        try {
+//            date = simpleDateFormat.parse(time);
+//            long ts = date.getTime();
+//            res = String.valueOf(ts);
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        return s;
+        
+    }
+
+    public static String toTime(long timeStamp) {
+        SimpleDateFormat sdf=new SimpleDateFormat("MM-dd HH:mm");//这个是你要转成后的时间的格式
+        String sd = sdf.format(new Date(Long.parseLong(String.valueOf(timeStamp))));   // 时间戳转换成时间
+        return sd;
+    }
+
+
+    public static byte[] getImageFromLocalByUrl(String strUrl) {
+        try {
+            File imageFile = new File(strUrl);
+            InputStream inStream = new FileInputStream(imageFile);
+            byte[] btImg = readInputStream(inStream);// 得到图片的二进制数据
+            return btImg;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static byte[] readInputStream(InputStream inStream) throws IOException {
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[10240];
+        int len = 0;
+        while ((len = inStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, len);
+        }
+        inStream.close();
+        return outStream.toByteArray();
+
+    }
+
 
 }

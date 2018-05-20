@@ -2,7 +2,6 @@ package com.example.wangguilong.microweibo.ui.fragment.home;
 
 import android.content.Context;
 
-import com.example.wangguilong.microweibo.bean.HomeBean;
 import com.example.wangguilong.microweibo.bean.TestBean;
 import com.example.wangguilong.microweibo.callback.OnHttpCallBack;
 

@@ -68,7 +68,6 @@ public class ShimmerRecyclerView extends RecyclerView {
         int mShimmerColor;
         int mShimmerDuration;
         Drawable mShimmerItemBackground;
-
         try {
             setDemoLayoutReference(a.getResourceId(R.styleable.ShimmerRecyclerView_shimmer_demo_layout, R.layout.layout_sample_view));
             setDemoChildCount(a.getInteger(R.styleable.ShimmerRecyclerView_shimmer_demo_child_count, 10));

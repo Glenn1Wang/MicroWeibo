@@ -24,11 +24,15 @@ public abstract class BaseActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+//		setToolBar();
 		setContentView(setLayout());
 		//透明状态栏
 		mImmersionBar = ImmersionBar.with(this)
-				.statusBarDarkFont(true)
-				.navigationBarEnable(false);
+				.transparentStatusBar();
+//				.fitsSystemWindows(true)
+//				.supportActionBar(false);
+//				.statusBarDarkFont(true)
+//				.navigationBarEnable(false);
 		mImmersionBar.init();
 
 		OkGo.getInstance().init(getApplication());
@@ -38,6 +42,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 		initView();
 		//设置监听
 		setListener();
+	}
+
+	protected void setToolBar() {
 	}
 
 	@Override

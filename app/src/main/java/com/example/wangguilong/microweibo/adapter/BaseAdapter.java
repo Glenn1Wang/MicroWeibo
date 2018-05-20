@@ -2,13 +2,11 @@ package com.example.wangguilong.microweibo.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 
 import com.example.wangguilong.microweibo.R;
 
@@ -28,9 +26,10 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter{
 	private int mLayoutId;
 	private OnItemClickListener mItemClickListener;
 	private OnItemLongClickListener mItemLongClickListener;
-	private OnLoadMoreListener mLoadMoreListener;
+//	private OnLoadMoreListener mLoadMoreListener;
 	private View mHeadView;
 	private boolean isLoading = false;
+//	private OnItemWidgetClickListener mItemWidgetClickListener;
 
 
 	public BaseAdapter(Context mContext,RecyclerView recyclerView, List<T> mData, int mLayoutId) {
@@ -42,24 +41,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter{
 		init(recyclerView);
 	}
 
-	private void init(RecyclerView recyclerView) {
-		recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-			@Override
-			public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-				super.onScrolled(recyclerView, dx, dy);
-				LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
-				int    totalItemCount = manager.getItemCount();
-				int    lastVisibleItemPosition = manager.findLastVisibleItemPosition();
-				if (!isLoading &&dy>0&&lastVisibleItemPosition>=totalItemCount-5) {
-					//此时是刷新状态
-					if (mLoadMoreListener != null) {
-						mLoadMoreListener.onLoadMore();
-					}
-					isLoading = true;
-				}
-				isLoading = false;
-			}
-		});
+	private void init(RecyclerView recy) {
 	}
 
 	@Override
@@ -74,6 +56,11 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter{
 		} else {
 			View progressView = LayoutInflater.from(mContext).inflate(R.layout.progress_item,parent,false);
 			//开启加载更多动画
+			progressView.setVisibility(View.VISIBLE);
+			if (!isLoading) {
+				progressView.setVisibility(View.GONE);
+
+			}
 			ImageView imageView = progressView.findViewById(R.id.loading_more_image);
 			AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getDrawable();
 			animationDrawable.start();
@@ -90,16 +77,18 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter{
 				@Override
 				public void onClick(View view) {
 					//把item的监听传入自己写的接口中
-					mItemClickListener.onItemClick(view,position-1);
+					mItemClickListener.onItemClick(view,position); //-1
 				}
 			});
 			((BaseViewHolder) holder).mItemView.setOnLongClickListener(new View.OnLongClickListener() {
 				@Override
 				public boolean onLongClick(View view) {
-					mItemLongClickListener.onItemLongClick(view,position-1);
+					mItemLongClickListener.onItemLongClick(view,position); //-1
 					return true;
 				}
 			});
+
+
 		}
 	}
 
@@ -188,6 +177,14 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter{
 		void onLoadMore();
 	}
 
+//	public interface OnItemWidgetClickListener {
+//		void onItemWidgetClick(View view,int position);
+//	}
+//
+//	public void setOnItemWidgetClickListener (OnItemWidgetClickListener listener) {
+//		this.mItemWidgetClickListener = listener;
+//	}
+
 	/**
 	 * item点击  暴露在外的方法
 	 * @param listener
@@ -204,13 +201,13 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter{
 		this.mItemLongClickListener = listener;
 	}
 
-	/**
-	 * 上拉加载更多   暴露在外的方法
-	 * @param listener
-	 */
-	public void setOnLoadMoreClickListener(OnLoadMoreListener listener){
-		this.mLoadMoreListener = listener;
-	}
+//	/**
+//	 * 上拉加载更多   暴露在外的方法
+//	 * @param listener
+//	 */
+//	public void setOnLoadMoreClickListener(OnLoadMoreListener listener){
+//		this.mLoadMoreListener = listener;
+//	}
 
 
 	public class ProgressViewHolder extends RecyclerView.ViewHolder{

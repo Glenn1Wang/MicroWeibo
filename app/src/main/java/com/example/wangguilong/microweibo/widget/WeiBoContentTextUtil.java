@@ -2,21 +2,14 @@ package com.example.wangguilong.microweibo.widget;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.text.style.ImageSpan;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.example.wangguilong.microweibo.R;
+import com.example.wangguilong.microweibo.ui.activity.profile.ProfileActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -63,10 +56,11 @@ public class WeiBoContentTextUtil {
                     @Override
                     public void onClick(View widget) {
                         //转到艾特的用户主页
-//                        Intent intent = new Intent(context, ProfileSwipeActivity.class);
-//                        String screen_name = at.substring(1);
-//                        intent.putExtra("screenName", screen_name);
-//                        context.startActivity(intent);
+                        Intent intent = new Intent(context, ProfileActivity.class);
+                        String screen_name = at.substring(1);
+                        intent.putExtra("screen_name", screen_name);
+                        intent.putExtra("flag",1000);
+                        context.startActivity(intent);
                         Toast.makeText(context, "点击了用户：" + at, Toast.LENGTH_SHORT).show();
                     }
                 };
